@@ -1,0 +1,6 @@
+[ENGINE]
+Response File Version=1.0.0.0.0
+[GENERIC]
+DECLINE_AUTO_UPDATES=true
+ORACLE_HOME=/app/weblogic
+INSTALL_TYPE=WebCenter Sites

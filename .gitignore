@@ -1,0 +1,5 @@
+*.link
+owcs-machine.*
+_*
+install-sites/host.txt
+host.txt

@@ -1,0 +1,18 @@
+shared:
+  image: owcs/shared
+  hostname: shared
+  domainname: loc
+  volumes: 
+    - /app/shared
+  expose:
+    - "1521"
+sites:
+  image: owcs/sites
+  hostname: sites
+  domainname: loc
+  links:
+    - shared:shared.loc
+  volumes_from:
+    - shared
+  ports:
+    - "7003:7003"
