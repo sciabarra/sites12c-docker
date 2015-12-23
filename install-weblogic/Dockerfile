@@ -1,2 +1,2 @@
-FROM owcs/3a-install-weblogic:latest
+FROM owcs/base-sites:latest
 COPY *.py *.sh /app/
