@@ -1,8 +1,7 @@
 #!/bin/bash
 eval $(bash _machine.sh)
-echo $DOCKER_HOST | sed -e 's!tcp://!!' -e 's/:.*//' >install-sites/host.txt
 docker run -h shared --name shared.loc -p 1521:1521 \
-  -d owcs/3b-install-shared
+  -d owcs/3b-shared
 docker run -h sites --name sites.loc \
   --link shared.loc --volumes-from shared.loc \
   -p 7001:7001 -p 7003:7003 -ti owcs/3b-sites \
