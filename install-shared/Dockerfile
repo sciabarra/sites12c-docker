@@ -1,6 +1,5 @@
 FROM owcs/base-oracle:latest
-RUN useradd -d /app app
+RUN groupadd -g 2000 app && useradd -g 2000 -u 2000 -d /app app 
 WORKDIR /app
 RUN mkdir -p /app/shared && chown -Rv app /app
-USER app
 VOLUME /app/shared

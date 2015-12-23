@@ -2,8 +2,8 @@
 eval $(bash _machine.sh)
 echo $DOCKER_HOST | sed -e 's!tcp://!!' -e 's/:.*//' >install-sites/host.txt
 # configure weblogic
-docker run -d -h shared --name shared.loc \
-  -p 1521:1521 owcs/3a-shared
+docker run -h shared --name shared.loc \
+  -p 1521:1521 -d owcs/3a-shared
 docker run -h sites --name sites.loc --link shared.loc \
   -ti owcs/3a-weblogic \
   bash install-weblogic.sh

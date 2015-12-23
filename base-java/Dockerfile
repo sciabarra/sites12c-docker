@@ -1,6 +1,7 @@
 FROM oraclelinux:7
 RUN yum -y update && yum clean all && yum -y install sudo telnet less nc perl
-RUN useradd -d /app app && \
+RUN groupadd -g 2000 app && \
+    useradd -g 2000 -u 2000 -d /app app && \
     echo "app ALL=(ALL) ALL" >>/etc/sudoers && \
     echo "app:app" | chpasswd
 COPY jdk.rpm.link .
