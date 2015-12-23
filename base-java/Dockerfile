@@ -1,5 +1,5 @@
 FROM oraclelinux:7
-RUN yum -y update && yum clean all && yum -y install sudo telnet less nc
+RUN yum -y update && yum clean all && yum -y install sudo telnet less nc perl
 RUN useradd -d /app app && \
     echo "app ALL=(ALL) ALL" >>/etc/sudoers && \
     echo "app:app" | chpasswd
