@@ -1,0 +1,1 @@
+weblogic/user_projects/domains/base_domain/bin/startManagedWebLogic.sh wcsites_server1

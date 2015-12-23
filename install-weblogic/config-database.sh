@@ -5,10 +5,7 @@ PASS=${2:-Welcome1}
 DB=${3:-shared.loc:1521:XE}
 PREFIX=${4:-DEV}
 HOST=$(echo $DB | sed -e 's/:.*//')
-# wait oracle is available
-while ! nc $HOST 1521 </dev/null >/dev/null
-do sleep 1 ; echo "." ; done
-sleep 5
+
 
 case $OP in
 create)

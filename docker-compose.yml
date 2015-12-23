@@ -1,13 +1,13 @@
 shared:
-  image: owcs/shared
+  image: owcs/sites-shared
   hostname: shared
   domainname: loc
   volumes: 
     - /app/shared
   expose:
     - "1521"
-sites:
-  image: owcs/sites
+staging:
+  image: owcs/sites-staging
   hostname: sites
   domainname: loc
   links:
@@ -16,3 +16,4 @@ sites:
     - shared
   ports:
     - "7003:7003"
+  cmd: run-sites.sh
