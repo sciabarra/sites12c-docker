@@ -1,6 +1,5 @@
 #!/bin/bash
 eval $(bash _machine.sh)
-echo $DOCKER_HOST | sed -e 's!tcp://!!' -e 's/:.*//' >install-sites/host.txt
 # configure weblogic
 docker run -h shared --name shared.loc \
   -p 1521:1521 -d owcs/3a-shared
@@ -11,4 +10,3 @@ docker stop shared.loc
 docker commit shared.loc owcs/3b-shared:latest
 docker commit sites.loc owcs/3b-weblogic:latest
 docker rm sites.loc shared.loc 
-docker build -t owcs/3b-sites:latest install-sites
