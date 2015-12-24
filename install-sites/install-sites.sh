@@ -17,8 +17,3 @@ bash http-sites.sh
 # fix sites afterwards
 sed -i s/$(cat host.txt)/sites/ \
   weblogic/user_projects/domains/base_domain/wcsites/wcsites/config/jbossTicketCacheReplicationConfig.xml
-echo "*******************"
-echo "**** COMPLETED ****" 
-echo "*******************"
-echo "Press enter"
-read
