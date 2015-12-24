@@ -9,6 +9,8 @@ docker-machine create --driver amazonec2 \
 --amazonec2-root-size 30 \
 --amazonec2-instance-type t2.large $DOCKER_MACHINE
 # adding swap space
-docker-machine ssh $DOCKER_MACHINE sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=2048
-docker-machine ssh $DOCKER_MACHINE sudo /sbin/mkswap /var/swap.1
-docker-machine ssh $DOCKER_MACHINE sudo /sbin/swapon /var/swap.1
+docker-machine ssh $DOCKER_MACHINE "sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=2048"
+docker-machine ssh $DOCKER_MACHINE "sudo /bin/chmod 0600 /var/swap.1"
+docker-machine ssh $DOCKER_MACHINE "sudo /sbin/mkswap /var/swap.1"
+docker-machine ssh $DOCKER_MACHINE "sudo /sbin/swapon /var/swap.1"
+docker-machine ssh $DOCKER_MACHINE "free"
