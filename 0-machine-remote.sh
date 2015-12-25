@@ -1,6 +1,6 @@
 #!/bin/bash
 DOCKER_MACHINE=${1:?machine name}
-echo docker-machine env $DOCKER_MACHINE  >_machine.sh
+echo "eval \$(docker-machine env $DOCKER_MACHINE)"  >_machine.sh
 HOST=${2:?hostname}
 test -e _owcs-machine.key || ssh-keygen -t rsa -f _owcs-machine.key
 echo "Please type the root password"

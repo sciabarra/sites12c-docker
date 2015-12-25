@@ -1,4 +1,4 @@
-FROM owcs/base-java:latest
+FROM owcs/1-base-java:latest
 USER app
 WORKDIR /app
 ADD oraInst.loc /app/oraInst.loc

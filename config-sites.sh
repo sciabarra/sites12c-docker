@@ -11,7 +11,3 @@ echo "****" Starting managed Sites
 sed -i s/$(cat host.txt)/sites/ weblogic/user_projects/domains/base_domain/wcsites/wcsites/config/jbossTicketCacheReplicationConfig.xml
 weblogic/user_projects/domains/base_domain/bin/startManagedWebLogic.sh wcsites_server1 t3://sites:7001 2>&1 >/app/managed.log &
 perl tailuntil.pl RUNNING managed.log
-echo "****" Completing install
-curl http://$(cat host.txt):7003/sites/HelloCS
-curl http://$(cat host.txt):7003/sites/sitesconfig 
-sed -i s/$(cat host.txt)/sites/ weblogic/user_projects/domains/base_domain/wcsites/wcsites/config/jbossTicketCacheReplicationConfig.xml
