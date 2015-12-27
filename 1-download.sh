@@ -10,7 +10,7 @@ echo >base-weblogic/weblogic.jar.link \
  $BASE/fmw_12.2.1.0.0_infrastructure.jar
 echo >base-sites/sites.jar.link \
  $BASE/fmw_12.2.1.0.0_wcsites_generic.jar
-for i in base-java base-oracle base-weblogic base-sites 
+for i in base-oracle base-java base-weblogic base-sites 
 do echo ============  BUILD owcs/1-$i:latest 
 docker build -t owcs/1-$i:latest $i
 done
