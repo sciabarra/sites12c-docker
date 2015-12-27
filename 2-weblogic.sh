@@ -1,5 +1,5 @@
 #!/bin/bash
-source _machine.sh
+source $PWD/_machine.sh
 # prepare
 docker build -t owcs/2-shared:latest install-shared
 docker build -t owcs/2-weblogic:latest install-weblogic

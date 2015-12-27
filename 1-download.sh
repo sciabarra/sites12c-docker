@@ -1,7 +1,7 @@
 #!/bin/bash
 BASE1=${1:?where the files are in http}
 BASE=${BASE1%/}
-source _machine.sh
+source $PWD/_machine.sh
 echo >base-java/jdk.rpm.link \
  $BASE/jdk-8u66-linux-x64.rpm
 echo >base-oracle/oraclexe.rpm.link \

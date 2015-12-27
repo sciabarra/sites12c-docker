@@ -1,5 +1,5 @@
 #!/bin/bash
-source _machine.sh
+source $PWD/_machine.sh
 EXTERN=${1:?hostname of sites docker machine} 
 echo $EXTERN >install-sites/host.txt
 docker build -t owcs/3-sites:latest install-sites
