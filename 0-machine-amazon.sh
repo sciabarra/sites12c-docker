@@ -1,31 +1,29 @@
 #!/bin/bash
-DOCKER_MACHINE=${1:?machine name}
-BUCKET=${2:?s3 bucket name}
-ACCESS=${3:?amazon access key}
-SECRET=${4:?amazon secret key}
-VPC=${5:?amazon vpc id}
-echo "eval \$(docker-machine env $DOCKER_MACHINE)"  >_machine.sh
+DOCKER_MACHINE_NAME=${1:?machine name}
+AWS_KEY=${2:?amazon access key}
+AWS_SECRET=${3:?amazon secret key}
+AWS_VPC=${4:?amazon vpc id}
+AWS_BUCKET=${5:?s3 bucket}
+MTYPE=t2.large
+#${6:?machine type - recommended t2.large for build, t2.medium to run}
+echo "eval \$(docker-machine env $DOCKER_MACHINE_NAME)"  >_machine.sh
+echo "AWS_KEY=$AWS_KEY">>_machine.sh
+echo "AWS_SECRET=$AWS_SECRET">>_machine.sh
+echo "AWS_VPC=$AWS_VPC">>_machine.sh
+echo "AWS_BUCKET=$AWS_BUCKET">>_machine.sh
 # create machine
 docker-machine create --driver amazonec2 \
---amazonec2-vpc-id "$VPC"  \
---amazonec2-access-key "$ACCESS" \
---amazonec2-secret-key  "$SECRET" \
+--amazonec2-vpc-id "$AWS_VPC"  \
+--amazonec2-access-key "$AWS_KEY" \
+--amazonec2-secret-key  "$AWS_SECRET" \
 --amazonec2-root-size 30 \
---amazonec2-instance-type t2.large $DOCKER_MACHINE
+--amazonec2-instance-type $MTYPE $DOCKER_MACHINE_NAME
 # add swap space
-docker-machine ssh $DOCKER_MACHINE "sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=2048"
-docker-machine ssh $DOCKER_MACHINE "sudo /bin/chmod 0600 /var/swap.1"
-docker-machine ssh $DOCKER_MACHINE "sudo /sbin/mkswap /var/swap.1"
-docker-machine ssh $DOCKER_MACHINE "sudo /sbin/swapon /var/swap.1"
-docker-machine ssh $DOCKER_MACHINE "free"
-# start registry
-docker run -d -p 5000:5000 \
--e REGISTRY_STORAGE=s3 \
--e REGISTRY_STORAGE_S3_REGION=us-east-1 \
--e REGISTRY_STORAGE_S3_BUCKET="$BUCKET" \
--e REGISTRY_STORAGE_S3_ACCESSKEY="$ACCESS" \
--e REGISTRY_STORAGE_S3_SECRETKEY="$SECRET" \
-registry:2
+docker-machine ssh $DOCKER_MACHINE_NAME "sudo /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=2048"
+docker-machine ssh $DOCKER_MACHINE_NAME "sudo /bin/chmod 0600 /var/swap.1"
+docker-machine ssh $DOCKER_MACHINE_NAME "sudo /sbin/mkswap /var/swap.1"
+docker-machine ssh $DOCKER_MACHINE_NAME "sudo /sbin/swapon /var/swap.1"
+docker-machine ssh $DOCKER_MACHINE_NAME "free"
 # print info
-echo Please use this ip for installing sites or create a dns/host alias
-docker-machine ip $DOCKER_MACHINE
+echo Please create a dns alias to this ip for installing sites:
+docker-machine ip $DOCKER_MACHINE_NAME
