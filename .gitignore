@@ -2,4 +2,5 @@
 owcs-machine.*
 _*
 install-sites/host.txt
-host.txt
+install-sites/password.txt
+docker-compose.yml

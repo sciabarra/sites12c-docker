@@ -1,7 +1,7 @@
 FROM owcs/1-base-java:latest
-USER app
+RUN java -jar downloader.jar sources.link=weblogic.zip
 WORKDIR /app
-ADD oraInst.loc /app/oraInst.loc
-COPY weblogic.rsp weblogic.jar.link /app/
-RUN curl >weblogic.jar $(cat weblogic.jar.link) 
-RUN java -jar weblogic.jar -responseFile /app/weblogic.rsp -silent -invPtrLoc /app/oraInst.loc ; rm weblogic.jar
+RUN jar xvf /weblogic.zip.zip ; rm /*.zip ; chown app:app *.jar 
+USER app
+COPY oraInst.loc weblogic.rsp /app/
+RUN java -jar *.jar -responseFile /app/weblogic.rsp -silent -invPtrLoc /app/oraInst.loc ; rm *.jar

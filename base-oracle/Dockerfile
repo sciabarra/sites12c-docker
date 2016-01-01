@@ -1,9 +1,8 @@
-FROM oraclelinux:7
+FROM owcs/1-base-java
 RUN yum -y update && yum clean all
-RUN yum install -y libaio bc net-tools less telnet 
-COPY oraclexe.rpm.link .
-RUN curl $(cat oraclexe.rpm.link) >oraclexe.rpm 
-RUN rpm -Uvh oraclexe.rpm ; rm *.rpm
+RUN yum install -y libaio bc net-tools less telnet unzip
+RUN java -jar downloader.jar sources.link=oraclexe.zip
+RUN unzip oraclexe.zip ; rm oraclexe.zip ; rpm -Uvh Disk1/*.rpm ; rm -Rvf Disk1
 
 # Environment variables 
 # -------------------------------------------------------------

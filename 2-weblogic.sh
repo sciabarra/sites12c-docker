@@ -1,7 +1,7 @@
 #!/bin/bash
 source $PWD/_machine.sh
 # prepare
-docker build -t owcs/2-shared:latest install-shared
+docker tag owcs/1-base-oracle owcs/2-shared:latest 
 docker build -t owcs/2-weblogic:latest install-weblogic
 # configure weblogic
 docker run -h shared.loc --name shared.loc \

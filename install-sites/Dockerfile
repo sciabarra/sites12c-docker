@@ -1,4 +1,3 @@
 FROM owcs/2-weblogic:latest
-COPY host.txt tailuntil.pl *.sh wcs_properties_bootstrap.ini.tmpl /app/
-RUN sed -e "s/@HOST@/$(cat host.txt)/" <wcs_properties_bootstrap.ini.tmpl >wcs_properties_bootstrap.ini
+COPY host.txt password.txt tailuntil.pl *.sh /app/
 CMD bash run-sites.sh

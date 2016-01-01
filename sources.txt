@@ -1,0 +1,4 @@
+jdk.rpm=http://download.oracle.com/otn-pub/java/jdk/8u66-b17/jdk-8u66-linux-x64.rpm
+sites.zip=http://download.oracle.com/otn/nt/middleware/12c/1221/fmw_12.2.1.0.0_wcsites_Disk1_1of1.zip
+weblogic.zip=http://download.oracle.com/otn/nt/middleware/12c/1221/fmw_12.2.1.0.0_infrastructure_Disk1_1of1.zip
+oraclexe.zip=http://download.oracle.com/otn/linux/oracle11g/xe/oracle-xe-11.2.0-1.0.x86_64.rpm.zip
