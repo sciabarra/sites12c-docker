@@ -1,8 +1,10 @@
 #!/bin/bash
 source $PWD/_machine.sh
-EXTRA_HOST="${1:?hostname assigned to sites}:$(docker-machine ip $DOCKER_MACHINE_NAME)"
+HOST=$(docker-machine ip $DOCKER_MACHINE_NAME)
+EXTRA_HOST="${1:?hostname assigned to sites}:$HOST"
+cp docker-compose.yml.tmpl docker-compose.yml
+echo "    - \"$EXTRA_HOST\"">>docker-compose.yml
 PASSWORD=${2:?default password for all users}
-sed -i -e "s/extra_hosts:.*/extra_hosts: $EXTRA_HOST/" docker-compose.yml
 echo $EXTERN >install-sites/host.txt
 echo $PASSWORD >install-sites/password.txt
 docker build -t owcs/3-sites:latest install-sites

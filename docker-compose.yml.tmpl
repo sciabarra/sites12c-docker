@@ -1,0 +1,16 @@
+shared:
+  image: localhost:5000/owcs/shared
+  hostname: shared
+  domainname: loc
+  expose:
+    - "1521"
+sites:
+  image: localhost:5000/owcs/sites
+  hostname: sites
+  domainname: loc
+  links:
+    - shared:shared.loc
+  ports:
+    - "7003:7003"
+  command: bash run-sites.sh
+  extra_hosts: 

@@ -1,7 +1,9 @@
 #!/bin/bash
 source _machine.sh
-EXTRA_HOST="${1:?hostname assigned to sites}:$(docker-machine ip $DOCKER_MACHINE_NAME)"
-sed -i -e "s/extra_hosts:.*/extra_hosts: $EXTRA_HOST/" docker-compose.yml
+HOST=$(docker-machine ip $DOCKER_MACHINE_NAME)
+EXTRA_HOST="${1:?hostname assigned to sites}:$HOST"
+cp docker-compose.yml.tmpl docker-compose.yml
+echo "    - \"$EXTRA_HOST\"">>docker-compose.yml
 AWS_KEY=${2:?aws key}
 AWS_SECRET=${3?aws secret}
 AWS_BUCKET=${4:?aws bucket name}
