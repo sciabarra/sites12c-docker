@@ -1,4 +1,5 @@
 #!/bin/bash
+source $PWD/_machine.sh
 USER=${1:?your oracle username}
 PASS=${2:?your oracle password}
 cp sources.txt base-java/sources.link
