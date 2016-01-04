@@ -10,8 +10,8 @@ sleep 5
 echo wait 5 sec
 sleep 5
 # configure sites
-bash bootstrap-sites.sh $(cat host.txt) 7003 Oracle $(cat password.txt)
-rm -f password.txt
+bash bootstrap-sites.sh "$(cat host.txt)" 7003 Oracle "$(cat password.txt)"
+#rm -f password.txt
 bash config-sites.sh
 bash http-sites.sh
 # fix sites afterwards

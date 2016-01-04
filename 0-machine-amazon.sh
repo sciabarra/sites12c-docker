@@ -27,3 +27,4 @@ docker-machine ssh $DOCKER_MACHINE_NAME "free"
 # print info
 echo Please create a dns alias to this ip for installing sites:
 docker-machine ip $DOCKER_MACHINE_NAME
+echo "Either build sites with step 1 or restore an existing image with step 5"
