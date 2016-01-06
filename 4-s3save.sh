@@ -1,5 +1,6 @@
 #!/bin/bash
-source _machine.sh
-source registry-on-s3.sh
+AWS_BUCKET=${1:?aws bucket}
+source $PWD/_machine.sh
+source $PWD/registry-on-s3.sh
 docker push localhost:5000/owcs/sites
 docker push localhost:5000/owcs/shared
