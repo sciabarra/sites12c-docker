@@ -10,3 +10,4 @@ docker run -d -p 5000:5000 --name=registry \
 -e REGISTRY_STORAGE_S3_ACCESSKEY="$KEY" \
 -e REGISTRY_STORAGE_S3_SECRETKEY="$SECRET" \
 registry:2
+sleep 5
