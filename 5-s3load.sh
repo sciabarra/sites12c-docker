@@ -1,5 +1,6 @@
 #!/bin/bash
-EXTRA_HOST="${1:?hostname assigned to sites}:${2:?public ip}"
+test -e _machine.sh && source $PWD/_machine.sh
+EXTRA_HOST="${1:?hostname assigned to sites}:127.0.0.1"
 cp docker-compose.yml.tmpl docker-compose.yml
 echo "    - \"$EXTRA_HOST\"">>docker-compose.yml
 AWS_KEY=${3?aws key}

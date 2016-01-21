@@ -1,7 +1,7 @@
 #!/bin/bash
-test -e $PWD/_machine.sh && source $PWD/_machine.sh
+test -e _machine.sh && source $PWD/_machine.sh
+IP=127.0.0.1
 HOST="${1:?hostname assigned to sites}"
-IP="$(docker-machine ip $DOCKER_MACHINE_NAME)"
 EXTRA_HOST="$HOST:$IP"
 cp docker-compose.yml.tmpl docker-compose.yml
 echo "    - \"$EXTRA_HOST\"">>docker-compose.yml

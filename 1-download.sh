@@ -1,5 +1,5 @@
 #!/bin/bash
-test -e $PWD/_machine.sh && source $PWD/_machine.sh
+test -e _machine.sh && source $PWD/_machine.sh
 USER=${1:?your oracle username}
 PASS=${2:?your oracle password}
 cp sources.txt base-java/sources.link
