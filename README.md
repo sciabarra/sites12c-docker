@@ -8,7 +8,7 @@ If you want to see an explanation, click on the image below to watch the video o
 
 WARNING: this written documentation is always more up to date than the video.
 
-![YouTube video](https://www.youtube.com/embed/k3gD0xjfEZQ)(img/youtube.png)
+[![YouTube video](img/youtube.png)](https://youtu.be/k3gD0xjfEZQ)
 
 ## Features
 
