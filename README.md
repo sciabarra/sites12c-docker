@@ -2,13 +2,13 @@
 
 This is a free kit we developed to install and manage WebCenter Sites 12c using docker and the Amazon cloud.
 
-If you want, you can watch this video. Otherwise, read on.
+The kit can be used also with your own servers and in other clouds.
+
+If you want to see an explanation, click on the image below to watch the video on YouTube. Otherwise, read on.
 
 WARNING: this written documentation is always more up to date than the video.
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/k3gD0xjfEZQ" frameborder="0" allowfullscreen></iframe>
-
-The kit can be used also with your own servers and in other clouds.
+![YouTube video](https://www.youtube.com/embed/k3gD0xjfEZQ)(img/youtube.png)
 
 ## Features
 
