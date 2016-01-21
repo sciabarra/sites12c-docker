@@ -20,8 +20,8 @@ docker run -h sites.loc --name sites.loc \
   bash install-sites.sh 
 docker stop shared.loc
 docker commit shared.loc owcs/3-shared:latest
-docker commit sites.loc owcs/3-sites:latest
-docker rm shared.loc sites.loc
+docker commit --change "CMD bash run-sites.sh ; tail -f /app/logs/sites.log" sites.loc owcs/3-sites:latest
+#docker rm shared.loc sites.loc
 docker tag -f owcs/3-sites localhost:5000/owcs/sites
 docker tag -f owcs/3-shared localhost:5000/owcs/shared
 echo "You can now start sites with 'docker-compose up'"
