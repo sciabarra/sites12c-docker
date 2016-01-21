@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PWD/_machine.sh
+test -e $PWD/_machine.sh && source $PWD/_machine.sh
 HOST="${1:?hostname assigned to sites}"
 IP="$(docker-machine ip $DOCKER_MACHINE_NAME)"
 EXTRA_HOST="$HOST:$IP"

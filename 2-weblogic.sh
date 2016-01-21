@@ -1,5 +1,5 @@
 #!/bin/bash
-source $PWD/_machine.sh
+test -e $PWD/_machine.sh && source $PWD/_machine.sh
 # prepare
 docker tag owcs/1-base-oracle owcs/2-shared:latest 
 docker build -t owcs/2-weblogic:latest install-weblogic
