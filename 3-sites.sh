@@ -6,8 +6,10 @@ EXTRA_HOST="$HOST:$IP"
 cp docker-compose.yml.tmpl docker-compose.yml
 echo "    - \"$EXTRA_HOST\"">>docker-compose.yml
 PASSWORD=${2:?default password for all users}
+DB="${3:?Oracle or HSQLDB}"
 echo $HOST >install-sites/host.txt
 echo $PASSWORD >install-sites/password.txt
+echo $DB >install-sites/db.txt
 docker build -t owcs/3-sites:latest install-sites
 docker run -h shared.loc --name shared.loc \
   -p 1521:1521 \
@@ -15,13 +17,13 @@ docker run -h shared.loc --name shared.loc \
 docker run -h sites.loc --name sites.loc \
   --link shared.loc \
   --add-host "$EXTRA_HOST" \
-  -p 7003:7003 \
+  -p 7003:7003 -p 7001:7001 \
   -ti owcs/3-sites \
   bash install-sites.sh 
 docker stop shared.loc
 docker commit shared.loc owcs/3-shared:latest
 docker commit --change "CMD bash run-sites.sh ; tail -f /app/logs/sites.log" sites.loc owcs/3-sites:latest
-#docker rm shared.loc sites.loc
+docker rm shared.loc sites.loc
 docker tag -f owcs/3-sites localhost:5000/owcs/sites
 docker tag -f owcs/3-shared localhost:5000/owcs/shared
 echo "You can now start sites with 'docker-compose up'"

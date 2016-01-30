@@ -22,8 +22,40 @@ for res in jdbcsystemresources:
 
 cd("/JDBCSystemResource/wcsitesDS/JdbcResource/wcsitesDS/JdbcDriverParams/NO_NAME_0/Properties/NO_NAME_0/Property/user")
 cmo.setValue(sys.argv[3]+"_WCSITES") 
-setOption('OverwriteDomain', 'true')
-#setOption('NoDependencyCheck', 'true')
+
+# set an additional hsqldb datasource
+cd('/')
+create('wcsitesHSQL', 'JDBCSystemResource')
+cd('JDBCSystemResource/wcsitesHSQL/JdbcResource/wcsitesHSQL')
+create('myJdbcDriverParams','JDBCDriverParams')
+cd('JDBCDriverParams/NO_NAME_0')
+user = "sa"
+passw = ""
+table = "INFORMATION_SCHEMA.SYSTEM_USERS"
+
+set('DriverName','org.hsqldb.jdbcDriver')
+set('URL', 'jdbc:hsqldb:/app/shared/data/sitesDB')
+
+set('PasswordEncrypted', passw)
+set('UseXADataSourceInterface', 'false')
+create('myProps','Properties')
+cd('Properties/NO_NAME_0')
+create('user', 'Property')
+cd('Property/user')
+cmo.setValue(user)
+
+cd('/JDBCSystemResource/wcsitesHSQL/JdbcResource/wcsitesHSQL')
+create('myJdbcDataSourceParams','JDBCDataSourceParams')
+cd('JDBCDataSourceParams/NO_NAME_0')
+set('JNDIName', java.lang.String("wcsitesHSQL"))
+
+cd('/JDBCSystemResource/wcsitesHSQL/JdbcResource/wcsitesHSQL')
+create('myJdbcConnectionPoolParams','JDBCConnectionPoolParams')
+cd('JDBCConnectionPoolParams/NO_NAME_0')
+set('TestTableName',table)
+assign('JDBCSystemResource','wcsitesHSQL','Target','wcsites_server1')
+ 
+# setOption('NoDependencyCheck', 'true')
 writeDomain('%s/weblogic/user_projects/domains/base_domain' % os.environ['PWD'])
 closeTemplate()
 
