@@ -1,6 +1,6 @@
 # Docker kit for Oracle WebCenter Sites v12c 
 
-Check changelog for [v1.0.1](/CHANGELOG.md/)
+Check changelog for [v1.0.1](CHANGELOG.md)
 
 ---
 
