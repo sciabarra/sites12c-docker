@@ -1,4 +1,6 @@
-# Docker kit for Oracle WebCenter Sites v12c
+# Docker kit for Oracle WebCenter Sites v12c 
+
+Check changelog for [v1.0.1](CHANGELOG.md)
 
 This is a free kit we developed to install and manage WebCenter Sites 12c using docker and the Amazon cloud.
 
@@ -20,13 +22,23 @@ Supported environments are:
 - A generic server running Linux.
 - Virtualbox.
 
-Actually, modifying the scripts, many more options are available, since docker supports a large number of environments.
+It can install Sites using both Oracle (XE) and HSQLDB
+
+Note. You can install Sites using HSQLDB. It is useful because HSQLDB is generally faster, you can do a backup of the whole enviroment just tarring a directory and you can snapshot a single image.
+
+However, given the dependency of Weblogic on OPSS, and OracleXE database running is still needed.
+
+Modifying the scripts, many more options are available, since docker supports a large number of environments.
 
 Once built, the images can be saved on the Amazon S3 web storage service.
 
 Scripts are provided to reuse the images without having to rebuild them.
 
-# Using this kit
+# Using this kit locally
+
+If you have a linux server with docker and docker-compose installed, simply clone this kit inside the server and execute steps 1,2,3. You will end up with an images and a docker-compose.yml you can use to launch sites.
+
+# Using this kit with Amazon
 
 Let's start with an overview of how to use this kit. A video demonstration of the steps will follow.
 
@@ -63,7 +75,6 @@ git clone https://github.com/sciabarra/ssites12c-docker
 Let's start from the step "zero", preparing a virtual machine for building our images.
 
 In this step we are going to launch an instance in the Amazon Cloud. We need to configure it a bit.
-
 
 Log into Amazon, using a root account.
 
@@ -137,7 +148,6 @@ Save the Image on Amazon S3.
 
 ## Step 1
 
-
 The first script,  will automatically download the software from the Oracle website. Since software download requires an account, although a free one, you neeed to provide your credentials.
 
 ```
@@ -168,7 +178,6 @@ The fourth step allows to save the images we created in the Amazon S3 web storag
 
 You have to create a  bucket before executing the command, which requires a bucket name.
 
-
 ## Step 5
 
 Once you created the images, you can reuse them to install a server with Sites. This step is comprised of a few substeps.
@@ -184,7 +193,6 @@ Finally you can run the images.
 ## Step 5.1 - Edit hosts
 
 Your Sites image uses a specific name, so you need to edit the host file of your system to be sure the name you choose will point to your server.
-
 
 ## Step 5.2
 

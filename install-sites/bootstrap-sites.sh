@@ -25,4 +25,4 @@ sed \
  -e "s/satellite.user=.*/satellite.user=SatelliteServer/" \
  -e "s/app.user=.*/app.user=fwadmin/" \
  <weblogic/wcsites/webcentersites/sites-home/template/config/wcs_properties_bootstrap.ini \
-  >weblogic/user_projects/domains/base_domain/wcsites/wcsites/config/wcs_properties_bootstrap.ini
+ >weblogic/user_projects/domains/base_domain/wcsites/wcsites/config/wcs_properties_bootstrap.ini

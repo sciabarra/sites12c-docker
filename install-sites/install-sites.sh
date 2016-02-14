@@ -13,6 +13,9 @@ sleep 5
 bash bootstrap-sites.sh "$(cat host.txt)" 7003 "$(cat db.txt)" "$(cat password.txt)"
 bash config-sites.sh
 bash http-sites.sh
+# stop
+weblogic/user_projects/domains/base_domain/bin/stopManagedWebLogic.sh wcsites_server1 t3://localhost:7001 weblogic Welcome1
+weblogic/user_projects/domains/base_domain/bin/stopWebLogic.sh 
 # fix sites afterwards
 sed -i s/$(cat host.txt)/sites.loc/ \
   weblogic/user_projects/domains/base_domain/wcsites/wcsites/config/jbossTicketCacheReplicationConfig.xml
