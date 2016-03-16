@@ -6,7 +6,7 @@ docker build -t owcs/2-weblogic:latest install-weblogic
 # configure weblogic
 docker run -h shared.loc --name shared.loc \
   -p 1521:1521 -d owcs/2-shared
-docker run -h sites.loc --name sites.loc --link shared.loc \
+docker run -h sites.loc --name sites.loc --link shared.loc:shared.loc \
   -ti owcs/2-weblogic \
   bash install-weblogic.sh
 docker stop shared.loc

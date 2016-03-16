@@ -17,7 +17,7 @@ docker run -h shared.loc --name shared.loc \
   -p 1521:1521 \
   -d owcs/2-shared
 docker run -h sites.loc --name sites.loc \
-  --link shared.loc \
+  --link shared.loc:shared.loc \
   --add-host "$EXTRA_HOST" \
   -p 7003:7003 -p 7001:7001 \
   -ti owcs/3-sites-$DB \
